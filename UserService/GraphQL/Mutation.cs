@@ -1,5 +1,6 @@
 ﻿using HotChocolate.AspNetCore.Authorization;
 using Library.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -36,6 +37,16 @@ namespace UserService.GraphQL
                 UserId = newUser.Id
             };
             newUser.UserRoles.Add(userRole);
+
+            var profile = new Profile
+            {
+                UserId = newUser.Id,
+                Name = newUser.FullName,
+                Address = "",
+                City = "",
+                Phone = ""
+            };
+            newUser.Profiles.Add(profile);
             // EF
             var ret = context.Users.Add(newUser);
             await context.SaveChangesAsync();
@@ -153,6 +164,9 @@ namespace UserService.GraphQL
                 UserId = newUser.Id
             };
             newUser.UserRoles.Add(userRole);
+
+            var courier = new Courier { UserId = newUser.Id };
+            newUser.Couriers.Add(courier);
             // EF
             var ret = context.Users.Add(newUser);
             await context.SaveChangesAsync();
@@ -252,6 +266,25 @@ namespace UserService.GraphQL
                 await context.SaveChangesAsync();
             }
             return await Task.FromResult(user);
+        }
+
+        [Authorize]
+        public async Task<Profile> UpdateProfileAsync(
+            ProfilesInput input,
+            ClaimsPrincipal claimsPrincipal,
+            [Service] IndividuProjContext context)
+        {
+            var username = claimsPrincipal.Identity.Name;
+            var user = context.Users.Where(x => x.Username == username).FirstOrDefault();
+            var profile = context.Profiles.FirstOrDefault(x => x.UserId == user.Id);
+            profile.Name = input.Name;
+            profile.City = input.City;
+            profile.Address = input.Address;
+            profile.Phone = input.Phone;
+
+            var ret = context.Profiles.Update(profile);
+            await context.SaveChangesAsync();
+            return ret.Entity;
         }
     }
 }
