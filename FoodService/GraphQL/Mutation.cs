@@ -45,7 +45,7 @@ namespace FoodService.GraphQL
         }
 
         [Authorize(Roles = new[] { "MANAGER" })]
-        public async Task<Food> DeleteProductByIdAsync(
+        public async Task<Food> DeleteFoodByIdAsync(
             int id,
             [Service] IndividuProjContext context)
         {
