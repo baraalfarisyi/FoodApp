@@ -1,12 +1,12 @@
-using CourierService.GraphQL;
-using Library.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-
+using Microsoft.EntityFrameworkCore;
+using Library.Models;
+using CourierService.GraphQL;
 
 var builder = WebApplication.CreateBuilder(args);
+
 var conString = builder.Configuration.GetConnectionString("MyDatabase");
 builder.Services.AddDbContext<IndividuProjContext>(options =>
      options.UseSqlServer(conString)
@@ -38,10 +38,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
 
     });
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("allowOrigin", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 });
+
 var app = builder.Build();
 
 app.UseAuthentication();

@@ -40,6 +40,14 @@ namespace Library.Models
             {
                 entity.ToTable("Courier");
 
+                entity.Property(e => e.Email)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Nama)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Couriers)
                     .HasForeignKey(d => d.UserId)

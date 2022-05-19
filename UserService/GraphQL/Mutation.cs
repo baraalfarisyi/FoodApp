@@ -86,6 +86,16 @@ namespace UserService.GraphQL
                 UserId = newUser.Id
             };
             newUser.UserRoles.Add(userRole);
+
+            var profile = new Profile
+            {
+                UserId = newUser.Id,
+                Name = newUser.FullName,
+                Address = "",
+                City = "",
+                Phone = ""
+            };
+            newUser.Profiles.Add(profile);
             // EF
             var ret = context.Users.Add(newUser);
             await context.SaveChangesAsync();
@@ -125,6 +135,16 @@ namespace UserService.GraphQL
                 UserId = newUser.Id
             };
             newUser.UserRoles.Add(userRole);
+
+            var profile = new Profile
+            {
+                UserId = newUser.Id,
+                Name = newUser.FullName,
+                Address = "",
+                City = "",
+                Phone = ""
+            };
+            newUser.Profiles.Add(profile);
             // EF
             var ret = context.Users.Add(newUser);
             await context.SaveChangesAsync();
@@ -165,8 +185,23 @@ namespace UserService.GraphQL
             };
             newUser.UserRoles.Add(userRole);
 
-            var courier = new Courier { UserId = newUser.Id };
+            var courier = new Courier
+            {
+                UserId = newUser.Id,
+                Nama = newUser.FullName,
+                Email = newUser.Email
+            };
             newUser.Couriers.Add(courier);
+
+            var profile = new Profile
+            {
+                UserId = newUser.Id,
+                Name = newUser.FullName,
+                Address = "",
+                City = "",
+                Phone = ""
+            };
+            newUser.Profiles.Add(profile);
             // EF
             var ret = context.Users.Add(newUser);
             await context.SaveChangesAsync();
