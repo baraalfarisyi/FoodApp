@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService", "UserService\UserService.csproj", "{83D6D57E-EE85-4E54-8B83-05244D3384A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserService", "UserService\UserService.csproj", "{83D6D57E-EE85-4E54-8B83-05244D3384A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodService", "FoodService\FoodService.csproj", "{198B6AD2-7B45-4866-82BE-696BB66BEE98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodService", "FoodService\FoodService.csproj", "{198B6AD2-7B45-4866-82BE-696BB66BEE98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService", "OrderService\OrderService.csproj", "{3E69D047-F4EA-4844-ADA0-FF14EBEA6E81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService", "OrderService\OrderService.csproj", "{3E69D047-F4EA-4844-ADA0-FF14EBEA6E81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "Library\Library.csproj", "{151AFA28-3069-4260-B0B3-89A9BCE10DE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library", "Library\Library.csproj", "{151AFA28-3069-4260-B0B3-89A9BCE10DE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourierService", "CourierService\CourierService.csproj", "{9A7814B7-8BA9-4D7E-BA2C-9F07E3C3E4E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CourierService", "CourierService\CourierService.csproj", "{9A7814B7-8BA9-4D7E-BA2C-9F07E3C3E4E0}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{4B54A38A-1D4B-480E-B937-1F161B14CECE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{9A7814B7-8BA9-4D7E-BA2C-9F07E3C3E4E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A7814B7-8BA9-4D7E-BA2C-9F07E3C3E4E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A7814B7-8BA9-4D7E-BA2C-9F07E3C3E4E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B54A38A-1D4B-480E-B937-1F161B14CECE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B54A38A-1D4B-480E-B937-1F161B14CECE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B54A38A-1D4B-480E-B937-1F161B14CECE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B54A38A-1D4B-480E-B937-1F161B14CECE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

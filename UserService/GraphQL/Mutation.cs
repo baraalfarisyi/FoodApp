@@ -290,17 +290,19 @@ namespace UserService.GraphQL
         }
 
         [Authorize(Roles = new[] { "ADMIN" })]
-        public async Task<string> DeleteUser(int id, [Service] IndividuProjContext context)
+        public async Task<User> DeleteUserByIdAsync(
+            int id,
+            [Service] IndividuProjContext context)
         {
-            var user = context.Users.FirstOrDefault(u => u.Id == id);
-            if (user == null) return "Data User Tidak Ada!";
+            var user = context.Users.Where(o => o.Id == id).FirstOrDefault();
+            if (user != null)
+            {
+                context.Users.Remove(user);
+                await context.SaveChangesAsync();
+            }
 
-            
-            context.Users.Remove(user);
 
-            await context.SaveChangesAsync();
-
-            return "Berhasil Delete Data User!";
+            return await Task.FromResult(user);
         }
 
         [Authorize]
