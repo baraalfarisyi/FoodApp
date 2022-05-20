@@ -40,14 +40,6 @@ namespace Library.Models
             {
                 entity.ToTable("Courier");
 
-                entity.Property(e => e.Email)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Nama)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Couriers)
                     .HasForeignKey(d => d.UserId)
@@ -68,14 +60,23 @@ namespace Library.Models
             {
                 entity.ToTable("Order");
 
-                entity.Property(e => e.Code)
+                entity.Property(e => e.Latitude)
                     .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("code");
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Longitude)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Status)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.HasOne(d => d.Courier)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.CourierId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Order_Courier");
             });
 
             modelBuilder.Entity<OrderDetail>(entity =>

@@ -188,8 +188,7 @@ namespace UserService.GraphQL
             var courier = new Courier
             {
                 UserId = newUser.Id,
-                Nama = newUser.FullName,
-                Email = newUser.Email
+                
             };
             newUser.Couriers.Add(courier);
 
@@ -291,16 +290,17 @@ namespace UserService.GraphQL
         }
 
         [Authorize(Roles = new[] { "ADMIN" })]
-        public async Task<User> DeleteUserByIdAsync(
-         int id, [Service] IndividuProjContext context)
+        public async Task<string> DeleteUser(int id, [Service] IndividuProjContext context)
         {
-            var user = context.Users.Where(o => o.Id == id).FirstOrDefault();
-            if (user != null)
-            {
-                context.Users.Remove(user);
-                await context.SaveChangesAsync();
-            }
-            return await Task.FromResult(user);
+            var user = context.Users.FirstOrDefault(u => u.Id == id);
+            if (user == null) return "Data User Tidak Ada!";
+
+            
+            context.Users.Remove(user);
+
+            await context.SaveChangesAsync();
+
+            return "Berhasil Delete Data User!";
         }
 
         [Authorize]
